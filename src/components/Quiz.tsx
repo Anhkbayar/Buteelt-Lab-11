@@ -9,7 +9,7 @@ interface QuizState {
   selectedAnswer: string | null
   score: number
 }
-
+//end zuvhun neg asuult baisniig buh asuultaar damjdag bolgoson
 const Quiz: React.FC = () => {
   const initialQuestions: QuizQuestion[] = QuizData.map((item) => ({
     question: item.question,
@@ -27,7 +27,7 @@ const Quiz: React.FC = () => {
   const handleOptionSelect = (option: string): void => {
     setState((prevState) => ({ ...prevState, selectedAnswer: option }));
   }
-
+  
 
   const handleButtonClick = (): void => {
     // Task3: Implement the logic for button click, such as moving to the next question.
@@ -46,6 +46,15 @@ const Quiz: React.FC = () => {
     });
   }
 
+  const handRestartClick =():void =>{
+    setState({
+      questions: initialQuestions,
+      currentQuestionIndex: 0,
+      selectedAnswer: null,
+      score: 0
+    })
+  }
+
   const { questions, currentQuestionIndex, selectedAnswer, score } = state;
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -54,6 +63,7 @@ const Quiz: React.FC = () => {
       <div>
         <h2>Quiz Completed</h2>
         <p>Final Score: {score} out of {questions.length}</p>
+        <button onClick={handRestartClick}>Restart</button>
       </div>
     );
   }
@@ -70,16 +80,16 @@ const Quiz: React.FC = () => {
           <li
             key={option}
             onClick={() => handleOptionSelect(option)}
-            // className={selectedAnswer === option ? 'selected' : ''}
-            style={{
-              border: selectedAnswer === option 
-                ? '2px solid #007bff' 
-                : '1px solid #fffff',
-              padding: '8px',
-              margin: '4px',
-              cursor: 'pointer',
-              borderRadius: '4px'
-            }}
+            className={selectedAnswer === option ? 'selected' : ''}
+            // style={{
+            //   border: selectedAnswer === option 
+            //     ? '2px solid #007bff' 
+            //     : '1px solid #fffff',
+            //   padding: '8px',
+            //   margin: '4px',
+            //   cursor: 'pointer',
+            //   borderRadius: '4px'
+            // }}
           >
             {option}
           </li>
