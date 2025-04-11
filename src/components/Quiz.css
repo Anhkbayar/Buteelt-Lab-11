@@ -13,7 +13,7 @@ Hint: You can use the className attribute for highlighting*/
   
   /* Container styles */
   div {
-    background-color: #f7f7f7;
+    background-color: #ffce50;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -45,8 +45,13 @@ Hint: You can use the className attribute for highlighting*/
     font-size: 16px;
     padding: 8px;
     margin: 4px 0;
-    border: 1px solid #ccc;
+    border: 2px solid #ffffff;
     border-radius: 5px;
+  }
+  li:hover{
+    transition: 200ms ease-in;
+    border: 4px solid #1f77c5;
+    /* box-shadow: 5px 5px 9px 0px rgba(0,0,0,0.75); */
   }
   
   /* Submit button styles */
