@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Quiz.css'
 import QuizQuestion from '../core/QuizQuestion';
+import QuizData from '../data/quizData';
 
 interface QuizState {
   questions: QuizQuestion[]
@@ -10,13 +11,12 @@ interface QuizState {
 }
 
 const Quiz: React.FC = () => {
-  const initialQuestions: QuizQuestion[] = [
-    {
-      question: 'What is the capital of France?',
-      options: ['London', 'Berlin', 'Paris', 'Madrid'],
-      correctAnswer: 'Paris',
-    },
-  ];
+  const initialQuestions: QuizQuestion[] = QuizData.map((item) => ({
+    question: item.question,
+    options: item.options,
+    correctAnswer: item.correctAnswer,
+  }))
+
   const [state, setState] = useState<QuizState>({
     questions: initialQuestions,
     currentQuestionIndex: 0,  // Initialize the current question index.
@@ -31,7 +31,20 @@ const Quiz: React.FC = () => {
 
   const handleButtonClick = (): void => {
     // Task3: Implement the logic for button click, such as moving to the next question.
-  } 
+    setState((prevState) => {
+      const isCorrect = prevState.selectedAnswer === prevState.questions[prevState.currentQuestionIndex].correctAnswer;
+      const updatedScore = isCorrect ? prevState.score + 1 : prevState.score;
+
+      const nextQuestionIndex = prevState.currentQuestionIndex + 1;
+
+      return {
+        ...prevState,
+        score: updatedScore,
+        currentQuestionIndex: nextQuestionIndex,
+        selectedAnswer: null,
+      };
+    });
+  }
 
   const { questions, currentQuestionIndex, selectedAnswer, score } = state;
   const currentQuestion = questions[currentQuestionIndex];
@@ -47,9 +60,10 @@ const Quiz: React.FC = () => {
 
   return (
     <div>
+      <h2>Current score: {score}</h2>
       <h2>Quiz Question:</h2>
       <p>{currentQuestion.question}</p>
-    
+
       <h3>Answer Options:</h3>
       <ul>
         {currentQuestion.options.map((option) => (
