@@ -81,15 +81,6 @@ const Quiz: React.FC = () => {
             key={option}
             onClick={() => handleOptionSelect(option)}
             className={selectedAnswer === option ? 'selected' : ''}
-            // style={{
-            //   border: selectedAnswer === option 
-            //     ? '2px solid #007bff' 
-            //     : '1px solid #fffff',
-            //   padding: '8px',
-            //   margin: '4px',
-            //   cursor: 'pointer',
-            //   borderRadius: '4px'
-            // }}
           >
             {option}
           </li>
