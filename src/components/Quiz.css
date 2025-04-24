@@ -10,6 +10,7 @@ Hint: You can use the className attribute for highlighting*/
   .selected:hover {
     cursor: pointer;
   }
+
   
   
   /* Container styles */
@@ -57,6 +58,12 @@ Hint: You can use the className attribute for highlighting*/
     transition: 200ms ease-in;
     border: 4px solid #1f77c5;
     /* box-shadow: 5px 5px 9px 0px rgba(0,0,0,0.75); */
+  }
+  li.option.disabled{
+    cursor: disabled;
+  }
+  li.option.disabled:hover{
+    cursor: disabled;
   }
 
   li.correct{
